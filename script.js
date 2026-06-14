@@ -4,7 +4,7 @@
 (function initTyped() {
   const el = document.getElementById('typed-name');
   const cursorEl = document.getElementById('cursor-blink');
-  const text = 'yoyote';
+  const text = 'Yoyote';
   let i = 0;
 
   function type() {
