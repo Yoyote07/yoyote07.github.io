@@ -69,47 +69,46 @@ main, .section, .hero {
 }
 
 .aurora-blob:nth-child(1) {
-  width: 700px; height: 500px;
-  background: radial-gradient(ellipse, rgba(110,231,247,0.30) 0%, transparent 70%);
-  top: -15%; left: -10%;
-  animation-duration: 18s;
+  width: 800px; height: 600px;
+  background: radial-gradient(ellipse, rgba(110,231,247,0.22) 0%, transparent 70%);
+  top: -20%; left: -15%;
+  animation-duration: 32s;
   animation-delay: 0s;
   opacity: 1;
 }
 
 .aurora-blob:nth-child(2) {
-  width: 600px; height: 600px;
-  background: radial-gradient(ellipse, rgba(139,92,246,0.25) 0%, transparent 70%);
-  top: 20%; right: -15%;
-  animation-duration: 22s;
-  animation-delay: -7s;
+  width: 700px; height: 700px;
+  background: radial-gradient(ellipse, rgba(139,92,246,0.18) 0%, transparent 70%);
+  top: 15%; right: -20%;
+  animation-duration: 40s;
+  animation-delay: -12s;
   opacity: 1;
 }
 
 .aurora-blob:nth-child(3) {
-  width: 500px; height: 400px;
-  background: radial-gradient(ellipse, rgba(59,130,246,0.20) 0%, transparent 70%);
-  bottom: 5%; left: 20%;
-  animation-duration: 26s;
-  animation-delay: -13s;
+  width: 600px; height: 500px;
+  background: radial-gradient(ellipse, rgba(59,130,246,0.15) 0%, transparent 70%);
+  bottom: 0%; left: 15%;
+  animation-duration: 48s;
+  animation-delay: -24s;
   opacity: 1;
 }
 
 .aurora-blob:nth-child(4) {
-  width: 400px; height: 350px;
-  background: radial-gradient(ellipse, rgba(110,231,247,0.18) 0%, transparent 70%);
-  top: 50%; right: 10%;
-  animation-duration: 20s;
-  animation-delay: -4s;
+  width: 500px; height: 400px;
+  background: radial-gradient(ellipse, rgba(110,231,247,0.12) 0%, transparent 70%);
+  top: 45%; right: 5%;
+  animation-duration: 36s;
+  animation-delay: -8s;
   opacity: 1;
 }
 
 @keyframes auroraFloat {
-  0%   { transform: translate(0px, 0px)   scale(1);    }
-  25%  { transform: translate(30px, -20px) scale(1.06); }
-  50%  { transform: translate(-20px, 30px) scale(0.95); }
-  75%  { transform: translate(20px, 20px) scale(1.04); }
-  100% { transform: translate(0px, 0px)   scale(1);    }
+  0%   { transform: translate(0px, 0px)    scale(1);    }
+  33%  { transform: translate(25px, -15px) scale(1.04); }
+  66%  { transform: translate(-15px, 20px) scale(0.97); }
+  100% { transform: translate(0px, 0px)    scale(1);    }
 }
 
 /* =============================================
