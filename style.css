@@ -46,69 +46,33 @@ main, .section, .hero {
 }
 
 /* =============================================
-   BACKGROUND — AURORA
+   BACKGROUND — GRAIN
    ============================================= */
 
-/* Supprimé : canvas remplacé par CSS pur */
 #bg-canvas { display: none; }
 
-.aurora {
+.noise {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* Lueurs statiques très douces dans les coins */
+body::before {
+  content: '';
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  overflow: hidden;
-}
-
-.aurora-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0;
-  animation: auroraFloat linear infinite;
-}
-
-.aurora-blob:nth-child(1) {
-  width: 800px; height: 600px;
-  background: radial-gradient(ellipse, rgba(110,231,247,0.22) 0%, transparent 70%);
-  top: -20%; left: -15%;
-  animation-duration: 32s;
-  animation-delay: 0s;
-  opacity: 1;
-}
-
-.aurora-blob:nth-child(2) {
-  width: 700px; height: 700px;
-  background: radial-gradient(ellipse, rgba(139,92,246,0.18) 0%, transparent 70%);
-  top: 15%; right: -20%;
-  animation-duration: 40s;
-  animation-delay: -12s;
-  opacity: 1;
-}
-
-.aurora-blob:nth-child(3) {
-  width: 600px; height: 500px;
-  background: radial-gradient(ellipse, rgba(59,130,246,0.15) 0%, transparent 70%);
-  bottom: 0%; left: 15%;
-  animation-duration: 48s;
-  animation-delay: -24s;
-  opacity: 1;
-}
-
-.aurora-blob:nth-child(4) {
-  width: 500px; height: 400px;
-  background: radial-gradient(ellipse, rgba(110,231,247,0.12) 0%, transparent 70%);
-  top: 45%; right: 5%;
-  animation-duration: 36s;
-  animation-delay: -8s;
-  opacity: 1;
-}
-
-@keyframes auroraFloat {
-  0%   { transform: translate(0px, 0px)    scale(1);    }
-  33%  { transform: translate(25px, -15px) scale(1.04); }
-  66%  { transform: translate(-15px, 20px) scale(0.97); }
-  100% { transform: translate(0px, 0px)    scale(1);    }
+  background:
+    radial-gradient(ellipse 60% 40% at 10% 5%,  rgba(110,231,247,0.055) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 90% 15%, rgba(139,92,246,0.045)  0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 50% 95%, rgba(59,130,246,0.04)   0%, transparent 70%);
 }
 
 /* =============================================
