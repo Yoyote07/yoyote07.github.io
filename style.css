@@ -46,15 +46,41 @@ main, .section, .hero {
 }
 
 /* =============================================
-   BACKGROUND — PARTICULES
+   BACKGROUND — LUEURS CYAN
    ============================================= */
 
-#bg-canvas {
+#bg-canvas { display: none; }
+
+.glow {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  display: block;
+  overflow: hidden;
+}
+
+.glow-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+}
+
+.g1 {
+  width: 600px; height: 500px;
+  background: rgba(110, 231, 247, 0.12);
+  top: -10%; left: -5%;
+}
+
+.g2 {
+  width: 500px; height: 400px;
+  background: rgba(110, 231, 247, 0.08);
+  bottom: 10%; right: -5%;
+}
+
+.g3 {
+  width: 350px; height: 300px;
+  background: rgba(110, 231, 247, 0.06);
+  top: 45%; left: 35%;
 }
 
 /* =============================================
