@@ -99,5 +99,5 @@ document.querySelectorAll('.contact-copy').forEach(btn => {
   });
 });
 
-// ─── Footer year ───────────────────────────────
+// ─── Footer year ──────────────────────────────
 document.getElementById('year').textContent = new Date().getFullYear();
