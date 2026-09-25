@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yoyote</title>
   <meta name="description" content="Yoyote — Fondateur, administrateur et community manager sur Discord." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="canonical" href="https://yoyote07.github.io/" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:url" content="https://yoyote07.github.io/" />
+  <meta property="og:title" content="Yoyote — Community Manager Discord" />
+  <meta property="og:description" content="Je crée, structure et anime des communautés Discord. De la conception du serveur à la gestion quotidienne des membres." />
+  <meta property="og:image" content="https://yoyote07.github.io/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Yoyote — Community Manager · Fondateur · Staff Discord" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -28,7 +43,7 @@
         <li><a href="#projects">Projets</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span>
       </button>
     </div>
@@ -210,7 +225,8 @@
               <div class="contact-label">Discord</div>
               <div class="contact-value">yoyote</div>
             </div>
-            <button class="copy-btn" onclick="copyDiscord(this)" title="Copier">
+            <span class="copy-toast" id="copy-toast" role="status" aria-live="polite"></span>
+            <button class="copy-btn" onclick="copyDiscord(this)" title="Copier" aria-label="Copier le pseudo Discord">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
             </button>
           </div>
