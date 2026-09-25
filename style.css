@@ -361,6 +361,26 @@ main, .section, .hero { background: transparent; }
   100% { transform: translateX(calc(-100% - 1.2rem)); }
 }
 
+/* Titre + flèches */
+.projects-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 1.5rem; margin-bottom: 1rem;
+}
+.projects-head .section-title { margin-bottom: 0; }
+.carousel-controls { display: flex; gap: .5rem; flex-shrink: 0; }
+.carousel-btn {
+  width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--muted); cursor: pointer; transition: all .2s var(--ease);
+}
+.carousel-btn svg { width: 18px; height: 18px; }
+.carousel-btn:hover { color: var(--acc); border-color: var(--border-h); background: var(--acc-dim); }
+.carousel-btn:active { transform: scale(.94); }
+.carousel-btn:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+/* Survol ou focus des flèches : le carrousel s'arrête pour qu'on puisse viser */
+.carousel-hold .carousel-inner { animation-play-state: paused; }
+@media (pointer: coarse) { .carousel-controls { display: none; } }
+
 /* Les cartes dans le carousel ont une largeur fixe */
 .carousel-inner .card {
   width: 300px;

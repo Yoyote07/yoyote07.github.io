@@ -29,6 +29,58 @@
   inner.parentElement.appendChild(clone);
 })();
 
+// ── Flèches du carrousel ────────────────────────
+// Défilement auto : on avance l'animation CSS d'une carte, calée sur les cartes.
+// Défilement manuel (animations réduites) : on fait défiler la piste.
+(function () {
+  const track = document.getElementById('carousel-track');
+  const prev  = document.getElementById('carousel-prev');
+  const next  = document.getElementById('carousel-next');
+  if (!track || !prev || !next) return;
+  const section = track.closest('.section');
+  const inners  = track.querySelectorAll('.carousel-inner');
+  const count   = inners[0].children.length;
+  let tween = null;
+
+  function cardStep() {
+    const card = inners[0].children[0];
+    return card.getBoundingClientRect().width + parseFloat(getComputedStyle(inners[0]).columnGap);
+  }
+
+  function go(dir) {
+    const anims = [...inners].flatMap(i => i.getAnimations());
+    if (!anims.length) {
+      track.scrollBy({ left: dir * cardStep(), behavior: 'smooth' });
+      return;
+    }
+    const total = anims[0].effect.getTiming().duration;
+    const slot  = total / count;
+    const now   = anims[0].currentTime % total;
+    const index = now / slot;
+    const target = (dir > 0 ? Math.floor(index + 0.05) + 1 : Math.ceil(index - 0.05) - 1) * slot;
+    const start = performance.now();
+    const ms = 450;
+    cancelAnimationFrame(tween);
+    (function frame(t) {
+      const p = Math.min((t - start) / ms, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const time = now + (target - now) * eased;
+      anims.forEach(a => { a.currentTime = ((time % total) + total) % total; });
+      if (p < 1) tween = requestAnimationFrame(frame);
+    })(start);
+  }
+
+  prev.addEventListener('click', () => go(-1));
+  next.addEventListener('click', () => go(1));
+
+  // Pause tant que la souris est sur les flèches, ou qu'elles ont le focus clavier
+  const controls = prev.parentElement;
+  const update = () => section.classList.toggle('carousel-hold',
+    controls.matches(':hover') || !!controls.querySelector(':focus-visible'));
+  ['mouseenter', 'mouseleave', 'focusin', 'focusout'].forEach(ev =>
+    controls.addEventListener(ev, () => setTimeout(update)));
+})();
+
 // ── Custom cursor ───────────────────────────────
 // Actif seulement avec une souris ; le curseur natif reste visible sinon
 (function () {
