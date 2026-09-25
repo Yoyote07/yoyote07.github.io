@@ -41,6 +41,8 @@
   const inner = document.getElementById('carousel-inner');
   if (!inner) return;
   const clone = inner.cloneNode(true);
+  clone.removeAttribute('id');
+  clone.setAttribute('aria-hidden', 'true');
   inner.parentElement.appendChild(clone);
 })();
 
