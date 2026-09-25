@@ -22,8 +22,9 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
@@ -39,9 +40,9 @@
     <div class="nav-inner">
       <a href="#" class="nav-logo">Yoyote<span class="dot-acc">.</span></a>
       <ul class="nav-links">
-        <li><a href="#about">À propos</a></li>
-        <li><a href="#projects">Projets</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about" data-section="about">À propos</a></li>
+        <li><a href="#projects" data-section="projects">Projets</a></li>
+        <li><a href="#contact" data-section="contact">Contact</a></li>
       </ul>
       <button class="nav-toggle" id="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span>
@@ -66,7 +67,7 @@
           Disponible pour collaborer
         </div>
         <h1 class="hero-title fade-hero">
-          <span id="typed-name"></span><span class="blink" id="blink">|</span>
+          <span class="sr-only">Yoyote</span><span id="typed-name" aria-hidden="true">Yoyote</span><span class="blink" id="blink" aria-hidden="true">|</span>
         </h1>
         <p class="hero-sub fade-hero">
           Community Manager <span class="sep">·</span> Fondateur <span class="sep">·</span> Staff Discord

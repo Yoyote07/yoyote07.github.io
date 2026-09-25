@@ -6,6 +6,7 @@
   const cur = document.getElementById('blink');
   const text = 'Yoyote';
   let i = 0;
+  el.textContent = '';
   function type() {
     if (i <= text.length) {
       el.textContent = text.slice(0, i++);
@@ -79,6 +80,28 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.fade-up, .reveal').forEach(el => obs.observe(el));
+})();
+
+// ── Lien actif dans le menu ─────────────────────
+// Surligne la section qui occupe le milieu de l'écran
+(function () {
+  const links = document.querySelectorAll('.nav-links a[data-section]');
+  const bySection = {};
+  links.forEach(l => { bySection[l.dataset.section] = l; });
+  function setActive(id) {
+    links.forEach(l => {
+      const on = l.dataset.section === id;
+      l.classList.toggle('active', on);
+      if (on) l.setAttribute('aria-current', 'location');
+      else l.removeAttribute('aria-current');
+    });
+  }
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) setActive(bySection[e.target.id] ? e.target.id : null);
+    });
+  }, { rootMargin: '-50% 0px -50% 0px' });
+  document.querySelectorAll('main > section[id]').forEach(s => obs.observe(s));
 })();
 
 // ── Nav scroll ──────────────────────────────────
