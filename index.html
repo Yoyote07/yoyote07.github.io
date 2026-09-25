@@ -3,25 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yoyote — Discord & Dev</title>
-  <meta name="description" content="Portfolio de Yoyote — créateur de serveurs Discord, développeur de bots et membre actif de la communauté." />
+  <title>Yoyote</title>
+  <meta name="description" content="Yoyote — Fondateur, administrateur et community manager sur Discord." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <div class="cursor" id="cursor"></div>
-  <div class="glow" aria-hidden="true">
-    <div class="glow-blob g1"></div>
-    <div class="glow-blob g2"></div>
-    <div class="glow-blob g3"></div>
+
+  <div class="bg-lights" aria-hidden="true">
+    <div class="bg-light l1"></div>
+    <div class="bg-light l2"></div>
+    <div class="bg-light l3"></div>
   </div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">Yoyote<span class="accent">.</span></a>
+      <a href="#" class="nav-logo">Yoyote<span class="dot-acc">.</span></a>
       <ul class="nav-links">
         <li><a href="#about">À propos</a></li>
         <li><a href="#projects">Projets</a></li>
@@ -43,202 +44,175 @@
 
   <main>
 
-    <!-- Hero -->
     <section class="hero" id="hero">
-      <div class="hero-content">
-        <div class="hero-eyebrow">
-          <span class="dot"></span>
-          <span>Actif sur Discord · Ouvert aux collaborations</span>
+      <div class="hero-inner">
+        <div class="hero-badge fade-hero">
+          <span class="badge-dot"></span>
+          Disponible pour collaborer
         </div>
-        <h1 class="hero-title">
-          <span class="hero-name" id="typed-name"></span><span class="cursor-blink" id="cursor-blink">|</span>
+        <h1 class="hero-title fade-hero">
+          <span id="typed-name"></span><span class="blink" id="blink">|</span>
         </h1>
-        <p class="hero-role">Créateur de communautés <span class="accent">·</span> Développeur de bots <span class="accent">·</span> Staff & Admin</p>
-        <p class="hero-desc">
-          Je construis et anime des espaces Discord depuis des années.<br class="br-desktop" />
-          Serveurs, bots, équipes esport — si ça tourne sur Discord, j'y suis.
+        <p class="hero-sub fade-hero">
+          Community Manager <span class="sep">·</span> Fondateur <span class="sep">·</span> Staff Discord
         </p>
-        <div class="hero-cta">
-          <a href="#projects" class="btn btn-primary">Voir mes projets</a>
-          <a href="#contact" class="btn btn-ghost">Me contacter</a>
+        <p class="hero-desc fade-hero">
+          Je crée, structure et anime des communautés Discord.<br class="br-d" />
+          De la conception du serveur à la gestion quotidienne des membres.
+        </p>
+        <div class="hero-actions fade-hero">
+          <a href="#projects" class="btn btn-primary">Mes projets</a>
+          <a href="#contact" class="btn btn-outline">Me contacter</a>
         </div>
-        <div class="hero-stack">
-          <span>Discord</span>
-          <span>Community Management</span>
-          <span>Bot Dev</span>
-          <span>Staff</span>
-          <span>Esport</span>
+        <div class="hero-tags fade-hero">
+          <span>Fondateur</span>
+          <span>Administration</span>
+          <span>Modération</span>
+          <span>Community</span>
+          <span>Twitch</span>
         </div>
-      </div>
-      <div class="hero-scroll">
-        <div class="scroll-line"></div>
-        <span>scroll</span>
       </div>
     </section>
 
-    <!-- About -->
     <section class="section" id="about">
       <div class="container">
-        <div class="section-label fade-up">À propos</div>
+        <p class="label fade-up">À propos</p>
         <div class="about-grid">
-          <div class="about-text fade-up">
-            <h2 class="section-title">Bâtir des communautés qui <span class="accent">durent</span>.</h2>
-            <p>
-              Je m'investis dans l'écosystème Discord depuis longtemps — en tant que fondateur, développeur, modérateur et administrateur.
-              Chaque projet est une occasion de créer quelque chose d'utile pour une communauté réelle.
+          <div class="fade-up">
+            <h2 class="section-title">Des communautés bâties pour <em>durer</em>.</h2>
+            <p class="body-text">
+              Je m'investis dans l'univers Discord depuis plusieurs années — en fondant mes propres serveurs,
+              en intégrant des équipes existantes en tant qu'admin ou modérateur, et en accompagnant
+              des streameurs dans la gestion de leur communauté Twitch.
             </p>
-            <p>
-              Du serveur chill au bot custom, en passant par la gestion d'équipes esport et le support utilisateur,
-              j'ai touché à tous les aspects de la vie d'un serveur Discord.
+            <p class="body-text">
+              Mon approche : mettre l'humain au centre. Une bonne communauté, ça se ressent dès le premier message.
             </p>
-            <a href="#contact" class="inline-link">Discutons ensemble →</a>
+            <a href="#contact" class="link-arrow">Travailler ensemble →</a>
           </div>
-          <div class="about-stats fade-up">
-            <div class="stat-card">
-              <div class="stat-number">620<span class="accent">+</span></div>
-              <div class="stat-label">Membres sur Wazalis</div>
+          <div class="stats-grid fade-up">
+            <div class="stat">
+              <div class="stat-val">7<span class="acc">+</span></div>
+              <div class="stat-lbl">Communautés actives</div>
             </div>
-            <div class="stat-card">
-              <div class="stat-number">5<span class="accent">+</span></div>
-              <div class="stat-label">Communautés actives</div>
+            <div class="stat">
+              <div class="stat-val">620<span class="acc">+</span></div>
+              <div class="stat-lbl">Membres sur Wazalis</div>
             </div>
-            <div class="stat-card">
-              <div class="stat-number">1</div>
-              <div class="stat-label">Bot développé</div>
+            <div class="stat">
+              <div class="stat-val">3<span class="acc">+</span></div>
+              <div class="stat-lbl">Serveurs fondés</div>
             </div>
-            <div class="stat-card">
-              <div class="stat-number">∞</div>
-              <div class="stat-label">Tickets traités</div>
+            <div class="stat">
+              <div class="stat-val">∞</div>
+              <div class="stat-lbl">Tickets traités</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Projects -->
     <section class="section" id="projects">
       <div class="container">
-        <div class="section-label fade-up">Projets Discord</div>
-        <h2 class="section-title fade-up">Ce sur quoi j'ai <span class="accent">travaillé</span>.</h2>
-        <div class="projects-grid">
+        <p class="label fade-up">Projets</p>
+        <h2 class="section-title fade-up">Ce sur quoi je <em>travaille</em>.</h2>
+        <div class="carousel-wrap fade-up">
+          <div class="carousel-track" id="carousel-track">
+            <div class="carousel-inner" id="carousel-inner">
 
-          <!-- Wazalis -->
-          <article class="project-card fade-up">
-            <div class="project-header">
-              <div class="project-icon">🌊</div>
-              <div class="project-badge badge-owner">Fondateur</div>
-            </div>
-            <h3 class="project-title">Wazalis</h3>
-            <p class="project-desc">Serveur communautaire chill avec 620 membres. Un espace bienveillant axé sur l'échange, la détente et la vie de communauté.</p>
-            <div class="project-tags">
-              <span>Communauté</span>
-              <span>620 membres</span>
-              <span>Chill</span>
-            </div>
-          </article>
+              <article class="card">
+                <div class="card-top">
+                  <span class="card-emoji">🌊</span>
+                  <span class="role-badge role-founder">Fondateur</span>
+                </div>
+                <h3 class="card-title">Wazalis</h3>
+                <p class="card-desc">Serveur communautaire chill que j'ai créé de zéro. 620+ membres, une ambiance bienveillante et un espace où chacun trouve sa place.</p>
+                <div class="card-tags"><span>Discord</span><span>620+ membres</span><span>Communauté</span></div>
+              </article>
 
-          <!-- Spicy Anomaly -->
-          <article class="project-card fade-up">
-            <div class="project-header">
-              <div class="project-icon">☢️</div>
-              <div class="project-badge badge-owner">Fondateur</div>
-            </div>
-            <h3 class="project-title">Spicy Anomaly</h3>
-            <p class="project-desc">Serveur dédié à SCP : Secret Laboratory. Organisation de parties, coordination d'équipes et gestion de la communauté autour du jeu.</p>
-            <div class="project-tags">
-              <span>Gaming</span>
-              <span>SCP: SL</span>
-              <span>Communauté</span>
-            </div>
-          </article>
+              <article class="card">
+                <div class="card-top">
+                  <span class="card-emoji">☢️</span>
+                  <span class="role-badge role-founder">Co-fondateur</span>
+                </div>
+                <h3 class="card-title">Spicy Anomaly</h3>
+                <p class="card-desc">Serveur SCP : Secret Laboratory co-fondé avec Paprikadoo. Organisation de parties et animation de la communauté gaming.</p>
+                <div class="card-tags"><span>SCP: SL</span><span>Gaming</span><span>Discord</span></div>
+              </article>
 
-          <!-- Nexy Bot -->
-          <article class="project-card fade-up">
-            <div class="project-header">
-              <div class="project-icon">🤖</div>
-              <div class="project-badge badge-dev">Développeur</div>
-            </div>
-            <h3 class="project-title">Nexy Bot</h3>
-            <p class="project-desc">Bot Discord développé from scratch. Conçu pour automatiser la gestion de serveurs, améliorer l'expérience utilisateur et simplifier les tâches répétitives.</p>
-            <div class="project-tags">
-              <span>Bot</span>
-              <span>Discord API</span>
-              <span>Automation</span>
-            </div>
-          </article>
+              <article class="card">
+                <div class="card-top">
+                  <span class="card-emoji">⚡</span>
+                  <span class="role-badge role-founder">Co-fondateur</span>
+                </div>
+                <h3 class="card-title">Nexy</h3>
+                <p class="card-desc">Co-fondé avec Slayz. Je pilote la communication avec les utilisateurs, les retours et l'image du projet auprès de la communauté.</p>
+                <div class="card-tags"><span>Communication</span><span>Community</span><span>Projet</span></div>
+              </article>
 
-          <!-- LSPDFR Hub -->
-          <article class="project-card fade-up">
-            <div class="project-header">
-              <div class="project-icon">🚔</div>
-              <div class="project-badge badge-staff">Modérateur · Support</div>
-            </div>
-            <h3 class="project-title">LSPDFR Hub</h3>
-            <p class="project-desc">Staff au sein d'une communauté dédiée au mod LSPDFR (GTA V). Gestion des tickets de support, modération des échanges et aide aux membres.</p>
-            <div class="project-tags">
-              <span>Staff</span>
-              <span>Modération</span>
-              <span>Support</span>
-              <span>LSPDFR</span>
-            </div>
-          </article>
+              <article class="card">
+                <div class="card-top">
+                  <span class="card-emoji">🚔</span>
+                  <span class="role-badge role-staff">Modérateur · Support</span>
+                </div>
+                <h3 class="card-title">LSPD:FR Hub</h3>
+                <p class="card-desc">Staff au sein d'une communauté dédiée au mod LSPDFR sur GTA V. Gestion des tickets de support et modération des échanges.</p>
+                <div class="card-tags"><span>Support</span><span>Modération</span><span>LSPDFR</span></div>
+              </article>
 
-          <!-- Ryze Esport -->
-          <article class="project-card fade-up">
-            <div class="project-header">
-              <div class="project-icon">🏆</div>
-              <div class="project-badge badge-admin">Administrateur</div>
-            </div>
-            <h3 class="project-title">Ryze Esport</h3>
-            <p class="project-desc">Administrateur de la team esport Ryze. Gestion de l'organisation, coordination des joueurs, suivi des compétitions et structuration du serveur.</p>
-            <div class="project-tags">
-              <span>Esport</span>
-              <span>Administration</span>
-              <span>Team Management</span>
-            </div>
-          </article>
+              <article class="card">
+                <div class="card-top">
+                  <span class="card-emoji">🏆</span>
+                  <span class="role-badge role-admin">Administrateur</span>
+                </div>
+                <h3 class="card-title">Ryze Esport</h3>
+                <p class="card-desc">Administrateur de la team esport. Refonte complète de leur serveur Discord, structuration de l'organisation et gestion quotidienne.</p>
+                <div class="card-tags"><span>Esport</span><span>Admin</span><span>Refonte serveur</span></div>
+              </article>
 
-          <!-- SMG3 -->
-          <article class="project-card fade-up">
-            <div class="project-header">
-              <div class="project-icon">⚡</div>
-              <div class="project-badge badge-staff">Staff</div>
-            </div>
-            <h3 class="project-title">SMG3</h3>
-            <p class="project-desc">Membre du staff du serveur SMG3. Contribution active à la modération, à la vie communautaire et au bon fonctionnement du serveur.</p>
-            <div class="project-tags">
-              <span>Staff</span>
-              <span>Modération</span>
-              <span>Communauté</span>
-            </div>
-          </article>
+              <article class="card">
+                <div class="card-top">
+                  <span class="card-emoji">🌐</span>
+                  <span class="role-badge role-staff">Modérateur</span>
+                </div>
+                <h3 class="card-title">SMG3</h3>
+                <p class="card-desc">Modérateur d'une communauté majoritairement anglophone. Gestion multilingue des échanges et maintien d'un espace sain pour tous.</p>
+                <div class="card-tags"><span>Anglophone</span><span>Modération</span><span>International</span></div>
+              </article>
 
+              <article class="card">
+                <div class="card-top">
+                  <span class="card-emoji">🎙️</span>
+                  <span class="role-badge role-staff">Modérateur</span>
+                </div>
+                <h3 class="card-title">Streameurs Twitch</h3>
+                <p class="card-desc">Modérateur chez plusieurs streameurs Twitch. Animation du chat, gestion des interactions et maintien d'une atmosphère positive en live.</p>
+                <div class="card-tags"><span>Twitch</span><span>Live</span><span>Modération</span></div>
+              </article>
+
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
     <section class="section section-contact" id="contact">
       <div class="container">
-        <div class="section-label fade-up">Contact</div>
-        <div class="contact-inner">
-          <h2 class="section-title fade-up">Un projet ? <span class="accent">Écris-moi.</span></h2>
-          <p class="contact-desc fade-up">
-            La meilleure façon de me joindre, c'est Discord. Un message et je réponds.
-          </p>
-          <div class="contact-links fade-up">
-            <div class="contact-card contact-card-static">
-              <div class="contact-card-icon">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
-              </div>
-              <div>
-                <div class="contact-card-label">Discord</div>
-                <div class="contact-card-value">yoyote</div>
-              </div>
-              <div class="contact-copy" onclick="navigator.clipboard.writeText('yoyote')" title="Copier">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-              </div>
+        <p class="label fade-up">Contact</p>
+        <div class="contact-wrap">
+          <h2 class="section-title fade-up">Un projet ? <em>Parlons-en.</em></h2>
+          <p class="body-text fade-up">La meilleure façon de me joindre, c'est Discord.</p>
+          <div class="contact-card fade-up">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
             </div>
+            <div class="contact-info">
+              <div class="contact-label">Discord</div>
+              <div class="contact-value">yoyote</div>
+            </div>
+            <button class="copy-btn" onclick="copyDiscord(this)" title="Copier">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            </button>
           </div>
         </div>
       </div>
@@ -248,11 +222,8 @@
 
   <footer class="footer">
     <div class="container footer-inner">
-      <div class="footer-logo">Yoyote<span class="accent">.</span></div>
-      <div class="footer-copy">Fait avec soin · <span id="year"></span></div>
-      <div class="footer-links">
-        <a href="https://discord.com" target="_blank" rel="noopener">Discord</a>
-      </div>
+      <span class="footer-name">Yoyote<span class="dot-acc">.</span></span>
+      <span class="footer-copy">© <span id="year"></span></span>
     </div>
   </footer>
 

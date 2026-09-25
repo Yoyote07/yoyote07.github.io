@@ -1,78 +1,94 @@
 'use strict';
 
-// ─── Typed Hero Name ───────────────────────────
-(function initTyped() {
-  const el = document.getElementById('typed-name');
-  const cursorEl = document.getElementById('cursor-blink');
+// ── Typed name ──────────────────────────────────
+(function () {
+  const el  = document.getElementById('typed-name');
+  const cur = document.getElementById('blink');
   const text = 'Yoyote';
   let i = 0;
-
   function type() {
     if (i <= text.length) {
-      el.textContent = text.slice(0, i);
-      i++;
-      setTimeout(type, i === 1 ? 400 : 80 + Math.random() * 50);
+      el.textContent = text.slice(0, i++);
+      setTimeout(type, i === 1 ? 500 : 80 + Math.random() * 55);
     } else {
-      setTimeout(() => { cursorEl.style.display = 'none'; }, 2000);
+      setTimeout(() => { if (cur) cur.style.display = 'none'; }, 2200);
     }
   }
-
   setTimeout(type, 700);
 })();
 
-// ─── Custom Cursor ─────────────────────────────
-(function initCursor() {
-  const cursor = document.getElementById('cursor');
-  if (!cursor) return;
-
-  let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
-
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
-
-  (function animate() {
-    cursorX += (mouseX - cursorX) * 0.18;
-    cursorY += (mouseY - cursorY) * 0.18;
-    cursor.style.left = cursorX + 'px';
-    cursor.style.top = cursorY + 'px';
-    requestAnimationFrame(animate);
+// ── Custom cursor ───────────────────────────────
+(function () {
+  const c = document.getElementById('cursor');
+  if (!c) return;
+  let mx = 0, my = 0, cx = 0, cy = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function move() {
+    cx += (mx - cx) * 0.16;
+    cy += (my - cy) * 0.16;
+    c.style.left = cx + 'px';
+    c.style.top  = cy + 'px';
+    requestAnimationFrame(move);
   })();
-
-  document.querySelectorAll('a, button, .project-card, .contact-card, .stat-card, .contact-copy').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+  document.querySelectorAll('a, button, .card, .stat, .contact-card').forEach(el => {
+    el.addEventListener('mouseenter', () => c.classList.add('hover'));
+    el.addEventListener('mouseleave', () => c.classList.remove('hover'));
   });
 })();
 
-// ─── Pas de canvas ────────────────────────────
+// ── Carousel infini ─────────────────────────────
+(function () {
+  const inner = document.getElementById('carousel-inner');
+  if (!inner) return;
+  const clone = inner.cloneNode(true);
+  inner.parentElement.appendChild(clone);
+})();
 
-// ─── Scroll fade-up ────────────────────────────
-(function initScroll() {
-  const obs = new IntersectionObserver((entries) => {
+// ── Card mouse-glow ─────────────────────────────
+// Suit la souris à l'intérieur de chaque carte et injecte la position en CSS var
+(function () {
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1) + '%';
+      const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1) + '%';
+      card.style.setProperty('--mx', x);
+      card.style.setProperty('--my', y);
+    });
+  });
+})();
+
+// ── Scroll : fade-up + reveal ───────────────────
+(function () {
+  const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  document.querySelectorAll('.fade-up, .reveal').forEach(el => obs.observe(el));
 })();
 
-// ─── Nav scroll ────────────────────────────────
+// ── Nav scroll ──────────────────────────────────
 window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
 }, { passive: true });
 
-// ─── Mobile menu ───────────────────────────────
-(function initMobileMenu() {
+// ── Mobile menu ─────────────────────────────────
+(function () {
   const toggle = document.getElementById('nav-toggle');
-  const menu = document.getElementById('mobile-menu');
+  const menu   = document.getElementById('mobile-menu');
   let open = false;
-
   const s1 = toggle.querySelector('span:first-child');
   const s2 = toggle.querySelector('span:last-child');
-
+  function close() {
+    open = false; menu.classList.remove('open');
+    document.body.style.overflow = '';
+    s1.style.transform = s2.style.transform = '';
+  }
   toggle.addEventListener('click', () => {
     open = !open;
     menu.classList.toggle('open', open);
@@ -80,24 +96,16 @@ window.addEventListener('scroll', () => {
     s1.style.transform = open ? 'translateY(6.5px) rotate(45deg)' : '';
     s2.style.transform = open ? 'translateY(-6.5px) rotate(-45deg)' : '';
   });
-
-  document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => {
-    open = false;
-    menu.classList.remove('open');
-    document.body.style.overflow = '';
-    s1.style.transform = '';
-    s2.style.transform = '';
-  }));
+  document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', close));
 })();
 
-// ─── Copy Discord ID feedback ──────────────────
-document.querySelectorAll('.contact-copy').forEach(btn => {
-  btn.addEventListener('click', () => {
-    btn.style.color = 'var(--accent)';
-    btn.title = 'Copié !';
-    setTimeout(() => { btn.style.color = ''; btn.title = 'Copier'; }, 1500);
-  });
-});
+// ── Copy Discord ────────────────────────────────
+function copyDiscord(btn) {
+  navigator.clipboard.writeText('yoyote');
+  btn.style.color = 'var(--acc)';
+  btn.title = 'Copié !';
+  setTimeout(() => { btn.style.color = ''; btn.title = 'Copier'; }, 1500);
+}
 
-// ─── Footer year ───────────────────────────────
+// ── Footer year ─────────────────────────────────
 document.getElementById('year').textContent = new Date().getFullYear();
