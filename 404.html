@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page introuvable — Yoyote</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Chemins absolus : la page 404 peut être servie depuis n'importe quelle URL -->
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+  <div class="bg-lights" aria-hidden="true">
+    <div class="bg-light l1"></div>
+    <div class="bg-light l2"></div>
+    <div class="bg-light l3"></div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Yoyote<span class="dot-acc">.</span></a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-badge fade-hero">
+          <span class="badge-dot"></span>
+          Erreur 404
+        </div>
+        <h1 class="hero-title fade-hero">Page introuvable<span class="dot-acc">.</span></h1>
+        <p class="hero-desc fade-hero">
+          Ce lien ne mène nulle part — il a peut-être été déplacé ou n'a jamais existé.
+        </p>
+        <div class="hero-actions fade-hero">
+          <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+          <a href="/#contact" class="btn btn-outline">Me contacter</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
