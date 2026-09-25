@@ -17,15 +17,32 @@
   setTimeout(type, 700);
 })();
 
+// ── Carousel infini ─────────────────────────────
+// Avant le curseur et le glow, pour que les cartes copiées en profitent aussi
+(function () {
+  const inner = document.getElementById('carousel-inner');
+  if (!inner) return;
+  const clone = inner.cloneNode(true);
+  clone.removeAttribute('id');
+  clone.setAttribute('aria-hidden', 'true');
+  inner.parentElement.appendChild(clone);
+})();
+
 // ── Custom cursor ───────────────────────────────
+// Actif seulement avec une souris ; le curseur natif reste visible sinon
 (function () {
   const c = document.getElementById('cursor');
-  if (!c) return;
-  let mx = 0, my = 0, cx = 0, cy = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  if (!c || !window.matchMedia('(pointer: fine)').matches) return;
+  document.documentElement.classList.add('cursor-on');
+  let mx = 0, my = 0, cx = 0, cy = 0, started = false;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    if (!started) { started = true; cx = mx; cy = my; c.classList.add('on'); }
+  });
+  document.addEventListener('mouseleave', () => { started = false; c.classList.remove('on'); });
   (function move() {
-    cx += (mx - cx) * 0.16;
-    cy += (my - cy) * 0.16;
+    cx += (mx - cx) * 0.35;
+    cy += (my - cy) * 0.35;
     c.style.left = cx + 'px';
     c.style.top  = cy + 'px';
     requestAnimationFrame(move);
@@ -34,16 +51,6 @@
     el.addEventListener('mouseenter', () => c.classList.add('hover'));
     el.addEventListener('mouseleave', () => c.classList.remove('hover'));
   });
-})();
-
-// ── Carousel infini ─────────────────────────────
-(function () {
-  const inner = document.getElementById('carousel-inner');
-  if (!inner) return;
-  const clone = inner.cloneNode(true);
-  clone.removeAttribute('id');
-  clone.setAttribute('aria-hidden', 'true');
-  inner.parentElement.appendChild(clone);
 })();
 
 // ── Card mouse-glow ─────────────────────────────
@@ -86,27 +93,55 @@ window.addEventListener('scroll', () => {
   let open = false;
   const s1 = toggle.querySelector('span:first-child');
   const s2 = toggle.querySelector('span:last-child');
-  function close() {
-    open = false; menu.classList.remove('open');
-    document.body.style.overflow = '';
-    s1.style.transform = s2.style.transform = '';
-  }
-  toggle.addEventListener('click', () => {
-    open = !open;
+  function setOpen(value) {
+    open = value;
     menu.classList.toggle('open', open);
     document.body.style.overflow = open ? 'hidden' : '';
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
     s1.style.transform = open ? 'translateY(6.5px) rotate(45deg)' : '';
     s2.style.transform = open ? 'translateY(-6.5px) rotate(-45deg)' : '';
+  }
+  toggle.addEventListener('click', () => setOpen(!open));
+  document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && open) { setOpen(false); toggle.focus(); }
   });
-  document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', close));
 })();
 
 // ── Copy Discord ────────────────────────────────
 function copyDiscord(btn) {
-  navigator.clipboard.writeText('yoyote');
-  btn.style.color = 'var(--acc)';
-  btn.title = 'Copié !';
-  setTimeout(() => { btn.style.color = ''; btn.title = 'Copier'; }, 1500);
+  const pseudo = 'yoyote';
+  const toast  = document.getElementById('copy-toast');
+  function show(ok) {
+    toast.textContent = ok ? 'Copié !' : 'Copie impossible — pseudo : ' + pseudo;
+    toast.classList.toggle('error', !ok);
+    toast.classList.add('show');
+    btn.style.color = ok ? 'var(--acc)' : '';
+    clearTimeout(copyDiscord.timer);
+    copyDiscord.timer = setTimeout(() => {
+      toast.classList.remove('show');
+      btn.style.color = '';
+    }, ok ? 1500 : 3500);
+  }
+  function fallback() {
+    const ta = document.createElement('textarea');
+    ta.value = pseudo;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    ta.remove();
+    show(ok);
+  }
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(pseudo).then(() => show(true), fallback);
+  } else {
+    fallback();
+  }
 }
 
 // ── Footer year ─────────────────────────────────
