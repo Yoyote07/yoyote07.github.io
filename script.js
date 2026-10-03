@@ -30,7 +30,7 @@
 })();
 
 // ── Flèches du carrousel ────────────────────────
-// Défilement auto : on avance l'animation CSS d'une carte, calée sur les cartes.
+// Défilement auto : on avance l'animation CSS jusqu'à la carte suivante, puis il reprend.
 // Défilement manuel (animations réduites) : on fait défiler la piste.
 (function () {
   const track = document.getElementById('carousel-track');
@@ -40,7 +40,7 @@
   const section = track.closest('.section');
   const inners  = track.querySelectorAll('.carousel-inner');
   const count   = inners[0].children.length;
-  let tween = null;
+  let tween = null, aim = null; // aim : carte visée pendant l'animation des flèches
 
   function cardStep() {
     const card = inners[0].children[0];
@@ -56,17 +56,24 @@
     const total = anims[0].effect.getTiming().duration;
     const slot  = total / count;
     const now   = anims[0].currentTime % total;
-    const index = now / slot;
-    const target = (dir > 0 ? Math.floor(index + 0.05) + 1 : Math.ceil(index - 0.05) - 1) * slot;
+    // La carte visée s'arrête juste après le fondu du bord gauche (8 % de la largeur)
+    const edge  = track.clientWidth * 0.08 / cardStep();
+    const index = now / slot + edge;
+    // Toujours une carte entière : la suivante (ou précédente) de celle la plus proche du bord
+    aim = (aim !== null ? aim : Math.round(index)) + dir;
+    let dist = ((aim - edge) * slot - now) % total; // chemin le plus court, boucle comprise
+    if (dist > total / 2) dist -= total;
+    if (dist < -total / 2) dist += total;
     const start = performance.now();
     const ms = 450;
     cancelAnimationFrame(tween);
     (function frame(t) {
       const p = Math.min((t - start) / ms, 1);
       const eased = 1 - Math.pow(1 - p, 3);
-      const time = now + (target - now) * eased;
+      const time = now + dist * eased;
       anims.forEach(a => { a.currentTime = ((time % total) + total) % total; });
       if (p < 1) tween = requestAnimationFrame(frame);
+      else aim = null;
     })(start);
   }
 
@@ -87,19 +94,22 @@
   const c = document.getElementById('cursor');
   if (!c || !window.matchMedia('(pointer: fine)').matches) return;
   document.documentElement.classList.add('cursor-on');
-  let mx = 0, my = 0, cx = 0, cy = 0, started = false;
+  let mx = 0, my = 0, cx = 0, cy = 0, started = false, raf = null;
+  // La boucle ne tourne que pendant que le curseur rattrape la souris
+  function move() {
+    cx += (mx - cx) * 0.35;
+    cy += (my - cy) * 0.35;
+    if (Math.abs(mx - cx) < 0.1 && Math.abs(my - cy) < 0.1) { cx = mx; cy = my; raf = null; }
+    else raf = requestAnimationFrame(move);
+    c.style.left = cx + 'px';
+    c.style.top  = cy + 'px';
+  }
   document.addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
     if (!started) { started = true; cx = mx; cy = my; c.classList.add('on'); }
+    if (!raf) raf = requestAnimationFrame(move);
   });
   document.addEventListener('mouseleave', () => { started = false; c.classList.remove('on'); });
-  (function move() {
-    cx += (mx - cx) * 0.35;
-    cy += (my - cy) * 0.35;
-    c.style.left = cx + 'px';
-    c.style.top  = cy + 'px';
-    requestAnimationFrame(move);
-  })();
   document.querySelectorAll('a, button, .card, .stat, .contact-card').forEach(el => {
     el.addEventListener('mouseenter', () => c.classList.add('hover'));
     el.addEventListener('mouseleave', () => c.classList.remove('hover'));
