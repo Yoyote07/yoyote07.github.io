@@ -36,25 +36,6 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
 }
-/* Le curseur natif n'est masqué que si le curseur perso est actif (JS + souris) */
-html.cursor-on, html.cursor-on a, html.cursor-on button { cursor: none; }
-@media (pointer: coarse) { .cursor { display: none; } }
-
-/* ── CURSOR ── */
-.cursor {
-  position: fixed;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--acc);
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%,-50%);
-  mix-blend-mode: screen;
-  opacity: 0;
-  transition: width .2s var(--ease), height .2s var(--ease), opacity .2s;
-}
-.cursor.on { opacity: 1; }
-.cursor.on.hover { width: 36px; height: 36px; opacity: .2; }
 
 /* ── BG LIGHTS ── */
 .bg-lights {

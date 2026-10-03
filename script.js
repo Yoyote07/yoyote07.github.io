@@ -19,7 +19,7 @@
 })();
 
 // ── Carousel infini ─────────────────────────────
-// Avant le curseur et le glow, pour que les cartes copiées en profitent aussi
+// Avant le glow, pour que les cartes copiées en profitent aussi
 (function () {
   const inner = document.getElementById('carousel-inner');
   if (!inner) return;
@@ -86,34 +86,6 @@
     controls.matches(':hover') || !!controls.querySelector(':focus-visible'));
   ['mouseenter', 'mouseleave', 'focusin', 'focusout'].forEach(ev =>
     controls.addEventListener(ev, () => setTimeout(update)));
-})();
-
-// ── Custom cursor ───────────────────────────────
-// Actif seulement avec une souris ; le curseur natif reste visible sinon
-(function () {
-  const c = document.getElementById('cursor');
-  if (!c || !window.matchMedia('(pointer: fine)').matches) return;
-  document.documentElement.classList.add('cursor-on');
-  let mx = 0, my = 0, cx = 0, cy = 0, started = false, raf = null;
-  // La boucle ne tourne que pendant que le curseur rattrape la souris
-  function move() {
-    cx += (mx - cx) * 0.35;
-    cy += (my - cy) * 0.35;
-    if (Math.abs(mx - cx) < 0.1 && Math.abs(my - cy) < 0.1) { cx = mx; cy = my; raf = null; }
-    else raf = requestAnimationFrame(move);
-    c.style.left = cx + 'px';
-    c.style.top  = cy + 'px';
-  }
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    if (!started) { started = true; cx = mx; cy = my; c.classList.add('on'); }
-    if (!raf) raf = requestAnimationFrame(move);
-  });
-  document.addEventListener('mouseleave', () => { started = false; c.classList.remove('on'); });
-  document.querySelectorAll('a, button, .card, .stat, .contact-card').forEach(el => {
-    el.addEventListener('mouseenter', () => c.classList.add('hover'));
-    el.addEventListener('mouseleave', () => c.classList.remove('hover'));
-  });
 })();
 
 // ── Card mouse-glow ─────────────────────────────
